@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">
+<title>Text title here</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link rel="stylesheet" type="text/css" href="X.css"/>
+<script type="text/javascript">
+    $(function(){
+      X.getUserInfo();
+      });
+function goMain(){
+	if(!X.isEmpty(X.cookie.get('rememberflag')) && X.cookie.get('rememberflag')){
+        window.location.href = 'main.html';
+ }else{
+        window.location.href = 'login.html';
+    }
+}
+    function userInfoResult(jsonResult){
+        X.cookie.set(jsonResult.result);
+        //setTimeout('goMain()',1500);
+        goMain();
+    }
+</script>
+</head>
+<body>
+</body>
+</html>

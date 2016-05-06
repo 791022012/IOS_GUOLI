@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:70px;
+}
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+	float: right;
+	margin-right: 5px;
+	height: 20px;
+	width: 50px;
+	text-decoration: none;
+}
+.vehicle_top .vehicle_home a {
+	font-size: 16px;
+	color: #FFF;
+	text-decoration: none;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #DDD;
+	font-size: 14px;
+}
+
+strong {
+	font-size: 18px;
+}
+.divTable {
+	margin-top: 10px;
+	height: auto;
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #555;
+	border-bottom-color: #555;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #555;
+	border-left-color: #555;
+	font-size: 16px;
+	text-align: left;
+}
+.divTable .divTable_tr1 {
+	width: 98%;
+	height: 25px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	margin-top: 5px;
+}
+.divTable .divTable_tr2 {
+	width: 98%;
+	height: 25px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	margin-top: 5px;
+}
+.divTable .divTable_tr3 {
+	width: 98%;
+	height: 35px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	overflow: auto;
+}
+
+.divTable .divTable_tr1 .divTable_tr1_td2 {
+	float: left;
+    display:inline;
+	width: 10%;
+	height: 100%;
+	text-align: left;
+}
+
+.divTable .divTable_tr1 .divTable_tr1_td4 {
+	float: left;
+    display:inline;
+    margin-right:10px;
+	height: 100%;
+	text-align: left;
+}
+.divTable .divTable_tr2 .divTable_tr2_td1 {
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+.divTable .divTable_tr2 .divTable_tr2_td2 {
+	float: left;
+	width: 40%;
+	height: 100%;
+}
+.divTable .divTable_tr2 .divTable_tr2_td3 {
+	float: left;
+	width: 90%;
+	height: 100%;
+	overflow: auto;
+}
+.divTable .divTable_tr3 .divTable_tr3_td1 {
+	float: left;
+	height: 100%;
+	width: 15%;
+	overflow: auto;
+}
+
+.divTable .divTable_tr3 .divTable_tr3_td2 {
+	float: left;
+	width: 85%;
+	overflow: auto;
+	height: 100%;
+}
+span {
+	color: #CCC;
+}

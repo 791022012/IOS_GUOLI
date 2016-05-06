@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="NoticeDetail.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+    $(function(){
+      var data = X.html.getInputs();
+      $('.notice_title').html(data.NOTICE_TITLE);
+      $('.notice_content').html(data.NOTICE_CONTENT);
+      });
+</script>
+</head>
+
+<body>
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="Message.html"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home">
+   <a href="main.html">
+ 	 <div><img src="tab_weixin_normal.png"></div>
+    </a>
+  </div>
+  <div>通知资讯</div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div> 
+
+
+<div class="notice_title">标题</div>
+
+<div class="notice_content">消息详细信息</div>
+
+
+</body>
+</html>

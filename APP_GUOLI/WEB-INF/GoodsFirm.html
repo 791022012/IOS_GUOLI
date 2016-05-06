@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">   <meta name="format-detection" content="telephone=no">
+             <meta name="format-detection" content="telephone=no">
+            <title>途易行</title>
+
+<link href="GoodsFirm.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="X.js"></script>
+    <script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+    var clickFlag = true,goodsIndex;//阻止事件冒泡
+    $(function(){
+      X.snail();
+      var data = {};
+      data.USER_ID = X.cookie.get('username');
+      data.ROLE_ID = X.cookie.get('role_id');
+       X.html.setOverlay();
+      X.soap(data,'GoodsPublishService','getGoods');
+      });
+    function resultList(jsonResult){
+        if(X.html.connError(jsonResult)) return;
+        var result = jsonResult.result;
+        var cls = 'detailBody';
+        $('.'+cls).remove();
+        if(!result instanceof Array){
+            if(X.getObjLenOrCompare(result, 0)){
+                var array = new Array();
+                array[0] = result;
+                result = array;
+            }
+        }
+        //判断result是否为空
+        if(result.length == 0){
+            $('.'+cls).append('<div class="divTable" style="text-align:center">未找到任何数据</div>');
+            $('.overlayX').css('display','none');
+            return false;
+        }
+        var divBody = $('.detailBodyModel').html();
+        if(X.isEmpty(divBody)){
+             X.dialog('未能获取有效的数据填充区域');
+            $('.overlayX').css('display','none');
+            return;
+        }
+        if($('.'+cls).length <= 0){
+            $('body').append('<div class="'+cls+'"></div>');
+        }
+        $('.'+cls).each(function(){
+          var div = $(this);
+                        var date = new Date();
+          for(var i=0;i<result.length;i++){
+              if(!X.getObjLenOrCompare(result[i], 0)) continue;
+              div.append(divBody);
+                        var mi = 0;
+                        var m = '';
+               $('.FROM_CITY:last strong').text(result[i].FROM_CITY);
+                        $('.CITY:last strong').text(result[i].CITY);
+                        $('.PUBLISH_TEL:last').html(result[i].PUBLISH_TEL);
+                        var date2 = new Date(result[i].PUBLISH_DATE.substring(0,result[i].PUBLISH_DATE.indexOf('.')).replace(/-/g,'/'));
+                        mi = parseInt((date.getTime() - date2.getTime())/1000/60 + 1);
+                        if(mi > 60){
+                            m = m + parseInt(mi/60) + '时' + mi%60 + '分';
+                        }else if(mi > 0){
+                            m = m + mi + '分';
+                        }else{
+                            m = m + '0分';
+                        }
+                        m = m + ' 前';
+                        $('.TO_DATE:last').html(m);
+                        $('.GOODS_TYPE_NAME:last').html('  ' +
+                            (X.isEmpty(result[i].GOODS_TYPE_NAME)?'  ':result[i].GOODS_TYPE_NAME)+
+                            '/' +
+                            (X.isEmpty(result[i].BIZ_TYPE_NAME)?'  ':result[i].BIZ_TYPE_NAME)+
+                            '/' +
+                            (X.isEmpty(result[i].VEHICLE_TYPE_NAME)?'  ':result[i].VEHICLE_TYPE_NAME)+
+                            '/' +
+                            (X.isEmpty(result[i].GOODS_NAME)?'  ':result[i].GOODS_NAME));
+                        $('.NOTES:last').html(result[i].NOTES);
+           }
+         });
+         $('.PUBLISH_TEL').click(function(){
+                                 clickFlag = false;
+                                 X.call($(this).text());
+                                 });
+         $('.divTable').click(function(){
+                              if(clickFlag){
+                              goodsIndex = $(this).index();
+                              X.confirm({'message':'是否删除该记录?','button1':'确定','button2':'取消'},function(){
+                                        var data = {};
+                                        data.ID = result[goodsIndex].ID;
+                                        X.html.setOverlay(0);
+                                        X.soap(data,'GoodsPublishService','deleteGoodsInformation','deleteGoods');
+                                        });
+                              }else{
+                              clickFlag = true;
+                              }
+                              });
+        $('.overlayX').css('display','none');
+    }
+function deleteGoods(jsonResult){
+    if(X.html.connError(jsonResult)) return;
+    if('00' == jsonResult.result[0].RESULT){
+        $('.divTable').eq(goodsIndex+1).remove();
+    }else{
+        X.dialog(jsonResult.result[0].MSG);
+    }
+}
+</script>
+</head>
+
+<body>
+<!--货源列表头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="main.html"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home"><a href="PublishingreSources.html">发布</a></div>
+  <div>货源列表</div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div>   
+ 
+ <!--司机信息_查询后显示的页面  -->
+<div class="detailBodyModel" hidden="hidden">
+<div class="divTable">
+            <div class="divTable_tr1">
+                <div class="divTable_tr1_td2"> <img src="location.png"></div>
+                <div class="divTable_tr1_td4 FROM_CITY"><strong></strong></div>
+                <div class="divTable_tr1_td2"><span>--></span></div>
+                <div class="divTable_tr1_td4 CITY"><strong></strong></div>
+            </div>
+           <div class="divTable_tr2">
+                <div class="divTable_tr2_td1"><img src="tel.png"></div>
+                <div class="divTable_tr2_td2 PUBLISH_TEL"></div>
+                 <div class="divTable_tr2_td1"><img src="clock.png"></div>
+             <div class="divTable_tr2_td2 TO_DATE"></div>
+            </div>
+             <div class="divTable_tr2">
+                <div class="divTable_tr2_td1"><img src="good.png"></div>
+                <div class="divTable_tr2_td3 GOODS_TYPE_NAME"></div>
+            </div>
+              <div class="divTable_tr3">
+                <div class="divTable_tr3_td1"><span>备注:</span></div>
+                <div class="divTable_tr3_td2 NOTES">
+                </div>
+            </div>
+            
+  </div>
+</div>
+    <div class="detailBody">
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320,maximum-scale=2.5,user-scalable=no">
+         <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="LinkVehicle.css" rel="stylesheet" type="text/css">
+<link href="X.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript">
+ $(function(){
+   X.snail();
+    X.html.setOverlay();
+	 X.soap(X.html.getInputs(), 'VehicleService', 'linkVehicle');
+ });
+function resultList(jsonResult){
+    X.html.putDataIntoTable(jsonResult.result,{'.table tbody tr':function(){
+                            window.location.href = 'VehicleInfo.html?inputs&VEHICLE_NO='+$(this).find('td').eq(0).text()+'&CLICKABLE=true&HREF=LinkVehicle.html';
+                            }});
+}
+ </script>
+</head>
+
+<body>
+<!--关联车息_头部导航栏-->
+<div class="vehicle_top">
+ <div class="vehicle_back">
+ 	 <a href="javascript:void(0);" onclick="X.html.goBack();">
+ 	 <img src="arrow.png" longdesc="Image/arrow.png">
+  	 </a>
+   </div>
+   <div>关联车辆</div>
+</div>
+<div class="div_duan"></div>
+<!--关联车辆_主体信息-->
+<div class="divTable">
+    <!--首行-->
+    <table width="100%" cellspacing="0" cellpadding="0" class="table">
+        <thead><tr>
+            <th id="VEHICLE_NO" scope="col">车牌号</th>
+            <th id="VEHICLE_TYPE" scope="col">车辆状态</th>
+            <th id="VEHICLE_STATUS" scope="col">类别</th>
+        </tr></thead>
+        <tbody></tbody>
+</table>
+    
+</div>
+
+</body>
+</html>

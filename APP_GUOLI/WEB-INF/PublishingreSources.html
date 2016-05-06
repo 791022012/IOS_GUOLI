@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+<title>货源发布</title>
+    <link href="X.css" rel="stylesheet" type="text/css"/>
+    <link href="PublishingreSources.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="cities.js"></script>
+
+<script type="text/javascript">
+    var city_id;
+    
+    
+    
+    $(function(){
+      $('div.div_textarea').click(function() {
+                                  var old=$('div.div_textarea').text();
+                                  $('body').append('<div class="overlayX"><input class="div_inputTel" type="text" placeholder="备注" /></div>');
+                                  if(old=='备注'){
+                                  old='';
+                                  }else{
+                                  $('div.overlayX input').text(old);
+                                  }
+                                  
+                                  $('.overlayX').css('display','block');
+                                  $('div.overlayX input').focus();
+                                  
+                                  if($('.overlayX').css('display')=='block'){
+                                  $('div.overlayX input').val(old);
+                                  $('div.overlayX input').change(function(e) {
+                                                                 var iphone=$('div.overlayX input').val();
+                                                                 $('div.div_textarea').text(iphone);
+                                                                 
+                                                                 if($('div.div_textarea').text().length<=0||$('div.overlayX input').val()=='备注'){
+                                                                 $('div.div_textarea').text('备注');
+                                                                 $('div.div_textarea').css('color','#CCC');
+                                                                 }else{
+                                                                 $('div.div_textarea').css('color','#000');
+                                                                 }
+                                                                 $('div.overlayX').remove();
+                                                                 
+                                                                 
+                                                                 });
+                                  }
+                                  
+                                  $('.overlayX').click(function(){
+                                                       $('div').remove('.overlayX');
+                                                       });
+                                  
+                                  });
+      
+      $('div.div_tel').click(function() {
+                             var old=$('div.div_tel').text();
+                             $('body').append('<div class="overlayX"><input class="div_inputTel" type="tel" placeholder="请输入您的联系电话" /></div>');
+                             if(old=='请输入您的联系电话'){
+                             old='';
+                             }else{
+                             $('div.overlayX input').text(old);
+                             }
+                             
+                             $('.overlayX').css('display','block');
+                             $('div.overlayX input').focus();
+                             
+                             if($('.overlayX').css('display')=='block'){
+                             $('div.overlayX input').val(old);
+                             $('div.overlayX input').change(function(e) {
+                                                            var iphone=$('div.overlayX input').val();
+                                                            $('div.div_tel').text(iphone);
+                                                            
+                                                            if($('div.div_tel').text().length<=0||$('div.overlayX input').val()=='请输入您的联系电话'){
+                                                            $('div.div_tel').text('请输入您的联系电话');
+                                                            $('div.div_tel').css('color','#CCC');
+                                                            }else{
+                                                            $('div.div_tel').css('color','#000');
+                                                            }
+                                                            $('div.overlayX').remove();
+                                                            
+                                                            
+                                                            });
+                             }
+                             
+                             $('.overlayX').click(function(){
+                                                  $('div').remove('.overlayX');
+                                                  });
+                             
+                             });
+      
+      
+
+      
+      
+      
+      
+      
+      $('#citys ul').delegate('li','click',function(e){
+                              $('#city_name').val($(this).text());
+                              //$('.overlayCity').css('display','none');
+                              });
+      $('#dianjizhongdianchengshi').click(function(){
+				X.city.showCitySelection(this.id);
+				});
+      $('#start_city').click(function(){
+                X.city.showCitySelection(this.id);
+			 });
+    
+      });
+      
+
+    function doCommit(){
+        
+        var data = {};
+        data.GOODS_NAME = $('input[name="etx_app_goods__goods_name"]').val();
+        data.FROM_CITY = $('#start_city').text();
+        data.NOTES = $('.div_textarea').text() == '备注' ? '' : $('.div_textarea').text();
+        data.ADDWHO = X.cookie.get('username');
+        data.CITY  = $('#dianjizhongdianchengshi').text();
+        data.GOODS_TYPE = $('#goods_type option:selected').attr('value');
+        data.BIZ_TYPE = $('#biz_type option:selected').attr('value');
+        data.VEHICLE_TYPE = $('#VEHICLE_TYPE option:selected').attr('value');
+        data.PUBLISH_TEL = $('.div_tel').text() == '请输入您的联系电话' ? '' : $('.div_tel').text();
+        if(X.isEmpty(data.FROM_CITY) || '请选择终点城市' == data.FROM_CITY){
+            X.dialog('请输入起点城市');
+            return;
+        }
+        if(X.isEmpty(data.CITY) || '请选择起点城市' == data.CITY){
+            X.dialog('请输入终点城市');
+            return;
+        }
+        if(X.isEmpty(data.GOODS_NAME)){
+            X.dialog('请输入货品名称');
+            return;
+        }
+        if(X.isEmpty(data.PUBLISH_TEL)){
+            X.dialog('请输入联系电话');
+            return;
+        }
+        if(!X.isTel(data.PUBLISH_TEL)){
+            X.dialog('请输入正确的手机号码');
+            return;
+        }
+        X.html.setOverlay(0);
+        X.soap(data,'PublishingResourcesService','addPublishingResources');
+    }
+    function resultList(jsonResult){
+        if(X.html.connError(jsonResult)) return;
+        if('00' == jsonResult.result[0].RESULT){
+            window.location.href = 'GoodsFirm.html';
+        }else{
+            X.dialog(jsonResult.result[0].MSG);
+        }
+    }
+</script>
+</head>
+
+<body>
+<!--货源发布头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"> <a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+	<div>发布</div>
+</div>
+
+ <div class="div_duan"></div>
+<!--货源发布(输入框)主体-->
+<div class="publishingresources_tableDiv">
+  <table width="100%" cellspacing="0" >
+    <tr>
+      <td>*&nbsp;起点城市:</td>
+      <td id="start_city"><label id="FROM_CITY">请选择起点城市</label></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;终点城市:</td>
+      <td id="dianjizhongdianchengshi"><label id="zhongdianchengshi">请选择终点城市</label></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;货物名称:</td>
+      <td><input name="etx_app_goods__goods_name" type="text"  placeholder="请输入货物名称"></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;货物类型:</td>
+      <td><select name="spn_app_goods__goods_type" style="width:70%" id="goods_type">
+          <option value="SORT_TYP1">重货</option>
+          <option value="SORT_TYP2">泡货</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;业务类型:</td>
+      <td><select name="spn_app_goods__goods_biz_type" style="width:70%" id="biz_type">
+          <option value="BIZ_TYP1">零担</option>
+          <option value="BIZ_TYP2">整车</option>
+          <option value="BIZ_TYP3">不限</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;车辆类型:</td>
+      <td><select name="spn_app_goods__goods_biz_type" style="width:70%" id="VEHICLE_TYPE">
+          <option value="110">7米</option >
+          <option value="111">9.6米</option >
+          <option value="112">13米</option >
+          <option value="113">17.5米</option >
+          <option value="114">22米</option >
+          <option value="7">普货车</option >
+          <option value="5">重型半挂牵引车</option >
+        </select></td>
+    </tr>
+    <tr>
+      <td>*&nbsp;联系电话:</td>
+      <td>
+          <div class="div_tel">请输入您的联系电话</div>
+      
+        </td>
+    </tr>
+    <tr>
+      <td>&nbsp;备注:</td>
+      <td> <div class="div_textarea">备注</div></td>
+    </tr>
+  </table>
+  <a href="javascript:void(0)" onclick="doCommit();">
+  <div class="publishingresources_tableDiv_button">发布</div>
+  </a>
+</div>
+<div class="overlayCity">
+    <div class="search-citys">
+        <input class="text" id="city_name" type="text" placeholder="请输入城市中文或拼音 / 点击选择城市" oninput="X.city.keyup();"/>
+        <div class="search-text" id="citys" onClick="X.city.blur(city_id);">
+            <ul></ul>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script>
+
+                           
+      
+    
+</script>
+</html>

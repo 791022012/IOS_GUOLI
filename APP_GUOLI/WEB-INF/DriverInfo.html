@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=2.5,user-scalable=no">
+     <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="DriverInfo.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    var resultData,data,clickAble;
+$(function(){
+  X.html.setOverlay();
+  data = X.html.getInputs();
+  clickAble = data.CLICKABLE;
+  delete data.CLICKABLE;
+  if(X.isEmpty(data.HREF)){
+  $('.vehicle_back a').css('href','Vehicle.html');
+  }else{
+  $('.vehicle_back a').css('href',data.HREF);
+  }
+  delete data.HREF;
+	X.soap(data,'VehicleService','driverInfo');
+});
+function resultList(jsonResult){
+    resultData = jsonResult.result;
+    if(X.isEmpty(clickAble)){
+        X.html.putDataIntoDiv(jsonResult.result,{'.divTable':function(){
+                              if(X.isEmpty(resultData[$(this).index()].ID_CARD)){
+                              X.dialog('未维护人员身份证号,无法关联');
+                              return;
+                              }
+                              window.location.href = 'LinkDriver.html?inputs&DRIVER_ID='+resultData[$(this).index()].DRIVER_ID+'&ID_CARD='+resultData[$(this).index()].ID_CARD;
+                              }});
+    }else{
+        X.html.putDataIntoDiv(jsonResult.result);
+    }
+    
+}
+</script>
+</head>
+
+<body>
+<!--司机信息_头部导航栏-->
+<div class="vehicle_top">
+   <div class="vehicle_back">
+ 	 <a href="Vehicle.html" >
+ 	 <img src="arrow.png"
+  	 width="30" height="30" longdesc="arrow.png">
+  	 </a>
+   </div>
+   <div class="vehicle_home">
+        <a href="DriverSearch.html">
+        <img src="tab_find_frd_normal.png" 
+         width="30" height="25" longdesc="arrow.png">
+         </a>
+   </div>
+   <div>司机信息</div>
+</div>
+ <div class="div_duan"></div>
+ <!--司机信息_查询后显示的页面   hidden="hidden" -->
+<div class="detailBodyModel"   hidden="hidden" >
+    <div class="divTable">
+        <div class="divTable_tr1">
+            <div class="divTable_tr1_td2"><span>司机:</span></div>
+            <div class="divTable_tr1_td3 DRIVER_NAME"></div>
+            <div class="divTable_tr1_td2"><span>电话:</span></div>
+            <div class="divTable_tr1_td3 DRIVER_TEL"></div>
+        </div>
+        <div class="divTable_tr2">
+            <div class="divTable_tr2_td1"><span>身份证:</span></div>
+            <div class="divTable_tr2_td2 ID_CARD"></div>
+        </div>
+        <div class="divTable_tr3">
+            <div class="divTable_tr3_td1"><span>地址:</span></div>
+            <div class="divTable_tr3_td2 DRIVER_ADDR"></div>
+        </div>
+        
+    </div>
+</div>
+    <div class="detailBody">
+    </div>
+</body>
+</html>

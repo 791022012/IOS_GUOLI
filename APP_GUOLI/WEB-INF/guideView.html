@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<link rel="stylesheet" type="text/css" href="jquery.jslides.css" media="screen" />
+<title>途易行</title>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="iscroll.js"></script>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript">
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+$(function(){
+  if(iphoneversion==6){$(".scroll_pic_view ul li img").css({"width":"320px","height":"568px"});}
+  if(iphoneversion=='ipad'){$(".scroll_pic_view ul li img").css({"width":"768px","height":"1024px"});}
+  //if(1==1){$(".scroll_pic_view ul li img").css({"width":"768px","height":"1024px"});}
+  
+  });
+</script>
+</head>
+<body>
+
+<!--效果html开始-->
+<div class="wraper">
+  <header id="scroll_pic_view" class="scroll_pic_view" style="overflow: hidden; ">
+    <div id="scroll_pic_view_div" style="width: 3840px; -webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1); -webkit-transform-origin: 0px 0px; -webkit-transform: translate(0px, 0px) translateZ(0px); ">
+      <ul id="scroll_pic_view_ul">
+        <li>  <a onclick="return false;"><img src="guide_images3.jpg" ></a> </li>
+        <li> <a onclick="return false;"> <img src="guide_images2.jpg"> </a> </li>
+        <li><a id="btn_goLogin" >立即体验</a> 
+         <a href="startView.html"><img src="guide_images1.jpg">  </a> </li>
+        
+      </ul>
+    </div>
+    <div>
+      <ol id="scroll_pic_nav" class="scroll_pic_nav">
+        <script type="text/javascript">
+			
+				(function(d, $){
+					var scrollPicView = d.getElementById("scroll_pic_view"),
+					scrollPicViewDiv = d.getElementById("scroll_pic_view_div"),
+					lis = scrollPicViewDiv.querySelectorAll("li"),
+					w = scrollPicView.offsetWidth,
+					len = lis.length;
+					for(var i=0; i<len; i++){
+						lis[i].style.width = w+"px";
+						if(i == len-1){
+							scrollPicViewDiv.style.width = w * len + "px";
+						}
+					}
+
+					var scroll_pic_view = new iScroll('scroll_pic_view', { 
+						snap: true,
+						momentum: false,
+						hScrollbar: false,
+						useTransition: true,
+						onScrollEnd: function() {
+							$("#scroll_pic_nav li").removeClass("on").eq(this.currPageX).addClass("on");
+							//$("#scroll_pic_nav li.on").prev().addClass("left");
+							//$("#scroll_pic_nav li.on").next().removeClass("left");	
+							
+							var  list=$("#scroll_pic_nav li");
+							for(var k=0;k<list.length;k++){
+								if(k<this.currPageX)
+									$(list[k]).addClass("left");
+								else
+									$(list[k]).removeClass("left");
+							}												
+						}
+					});
+					//
+					var nav_lis = new Array(lis.length);
+					d.write('<li class="on"><span>1</span></li>');
+					for(var i=1; i<nav_lis.length; i++){										
+						d.write("<li><span>"+(i+1)+"</span></li>");				
+					}
+					
+					
+					
+				
+					
+				
+					
+				})(document, $);
+				
+		
+	</script> 
+      </ol>
+    </div>
+  </header>
+</div>
+<!--效果html结束-->
+<div class="clear"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+	$("#btn_goLogin").bind('click', function(){
+		window.location.href="startView.html";
+    });  
+</script>

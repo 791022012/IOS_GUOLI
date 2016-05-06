@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">  <meta name="format-detection" content="telephone=no">
+<title>在途跟踪</title>
+<link href="Track.css" rel="stylesheet" type="text/css">
+<link href="X.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="X.js"></script>
+    <script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript">
+    var listData;
+    $(function(){
+      X.snail();
+      var data = {};
+      data.USER_ID = X.cookie.get('username');
+      X.html.setOverlay();
+      X.soap(data,'TrackService','getTrsInfo');
+      });
+    function resultList(jsonResult){
+        listData = jsonResult.result;
+        X.html.putDataIntoTable(listData,X.html.getTableTrsWithCheckbox());
+    }
+    function doTrack(){
+        if($('input[type="checkbox"]:checked').size() == 0){
+             X.dialog('请选择纪录');
+            return;
+        }
+        if($('input[type="checkbox"]:checked').size() > 1){
+             X.dialog('不能批量操作');
+            return;
+        }
+        var tr = $('input[type="checkbox"]:checked').parent().parent();
+        var data = listData[tr.index()];
+        var hrefData = {};
+        hrefData.USER_ID = X.cookie.get('username');
+        hrefData.TRS_ID = data.TRS_ID;
+        hrefData.ORG_ID = data.SHORT_TRS_ID;
+        hrefData.DRIVER_TEL = data.DRIVER_TEL;
+        hrefData.DRIVER_NAME = data.DRIVER_NAME;
+        hrefData.STATUS = data.STATUS;
+        hrefData.TRANS_GROUP_ID = data.TRANS_GROUP_ID;
+        hrefData.VEHICLE_ID = data.VEHICLE_ID;
+        window.location.href=X.html.setInputs(hrefData, 'TrackRecord.html');
+    }
+</script>
+</head>
+
+<body>
+<!--在途跟踪头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="main.html"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home"><a href="javascript:void(0)" onclick="doTrack();">跟踪</a></div>
+  <div>运单列表</div>
+</div>
+<div class="div_duan"></div>
+
+<!-- 在途跟踪主体 --> 
+<!--在途跟踪_首页显示信息-->
+<div class="divTable"> 
+  <div class="divTable_head">
+    <table width="100%"  cellspacing="0" cellpadding="0" class="table">
+     <!--首行-->
+      <thead>
+        <tr> 
+          <th scope="col">&nbsp;</th>
+          <th id="TRANS_GROUP_ID" scope="col">合同号</th>
+          <th id="DISPATCH_TIME" scope="col">发运日期</th>
+          <th id="VEHICLE_ID" scope="col">车牌号</th>
+          <th id="START_ID_NAME" scope="col">起点城市</th>
+          <th id="END_ID_NAME" scope="col">终点城市</th>
+          <th id="DRIVER_NAME" scope="col">司机</th>
+          <th id="DRIVER_TEL" scope="col">电话</th>
+          <th id="ORG_ID" scope="col">运作机构</th>
+        </tr>
+      </thead>
+ <!--信息显示区域-->
+        <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">     <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="SupplierInfo.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+  X.snail();
+  X.html.setOverlay();
+	X.soap(X.html.getInputs(), 'VehicleService', 'supplierInfo');
+});
+function resultList(jsonResult){
+	X.html.putDataIntoDiv(jsonResult.result);
+}
+</script>
+</head>
+
+<body>
+<!--供应商信息_头部导航栏-->
+<div class="vehicle_top">
+   <div class="vehicle_back">
+ 	 <a href="Vehicle.html" >
+ 	 <img src="arrow.png"
+  	 width="30" height="30" longdesc="arrow.png">
+  	 </a>
+  </div>
+   <div class="vehicle_home">
+        <a href="SupplierInfo_Search.html">
+        <img src="tab_find_frd_normal.png" 
+         width="30" height="25" longdesc="arrow.png">
+         </a>
+   </div>
+   <div>供应商信息</div>
+</div>
+<div class="div_duan"></div>
+<!--供应商信息_主体-->
+<div class="detailBodyModel" hidden="hidden">
+    <div class="divTable">
+        <div class="divTable_tr2">
+            <div class="divTable_tr2_td1"><span>供应商:</span></div>
+            <div class="divTable_tr2_td2 BUSS_ID"></div>
+        </div>
+        <div class="divTable_tr3">
+            <div class="divTable_tr3_td1"><span>地址:</span></div>
+            <div class="divTable_tr3_td2 BUSS_ADDRESS"></div>
+        </div>
+        
+    </div>
+</div>
+    <div class="detailBody">
+        
+    </div>
+</body>
+</html>

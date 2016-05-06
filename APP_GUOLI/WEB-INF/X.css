@@ -1,0 +1,137 @@
+/*通用class*/
+/* 无任何样式，纯粹填充 */
+.X{}
+	/* 隐藏 */
+.hidden{display:none}
+.unHidden{display:block;}
+	/* 水平分隔线 */
+.dividLineH{clear:left;height:2px;width:75%;margin-left:30px;margin-right:30px;background-color:red;margin-top:10px;}
+	/* 垂直分隔线 */
+dl,ol,ul,li{list-style:none;}
+.scrollImg{width:100%;height: 200px}
+.mainContainer > div{width:50%;float:left;margin-top:10px;height:100%;}
+.mainContainer > div div{text-align:center;margin-top:10px;margin-left:10px;border-radius:10px}
+.mainFooter{clear:left;backgroud-color:blue;width:100%;text-align:center;height:100px;oveflow:hidden;zoom:1}
+
+/* 查询条件样式 */
+.inputs{text-align:center;margin-top:15px}
+.inputs > span{color:#fc6e3d;font-size:1.4em;width:30%;margin-left:20px;}
+.inputs > input{width:70%;margin-left:10px}
+.inputs > div{width:100%;margin-left:25px;margin-right:18px;margin-top:5px;background-color:#FFFFFF}
+.other_button{background-color:blue;width:50%;margin:0 auto;margin-top:20px}
+.top_button{background-color:blue;width:50%;margin:0 auto;margin-top:50px;}
+/*  ---------   */
+
+/* table样式  */
+.table{width:100%;height:20px;border-collapse:collapse;}
+.table td{border:1px solid #CCC;height: 20px;color:#000000;padding-left:5px;}
+
+/* 选中table的行背景 */
+.selectedTr{background-color:#66CCFF;}
+
+.snail{/*background-image:url(snail.gif);*/background-repeat:no-repeat;background-size:auto 50px;height:55px;}
+
+/* 遮盖层 */
+/* 遮盖层 层数说明：8000-8199:普通层；8200-8399:内嵌页面层；8400-8599:查询条件层；8600-8799:城市选择层；8800-8999:暂缺 */
+.overlayX{z-index:8000;position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:rgba(204,204,204,0.7);display:none;}
+.overlayX > div{position:absolute;width:90%;margin-left:5%;margin-top:35%;background-color:#FFFFFF;height:60px;line-height:60px;}
+.overlayX span{vertical-align:middle;margin-left:10px;overflow:auto;}
+.overlayX img{margin-left:10px;vertical-align:middle;width:50px;height:50px;line-height:60px;}
+.overlayX .div_inputTel{
+    z-index:8500;
+    width:95%;
+    height:24px;
+    background-color:#FFF;
+    font-size:14px;
+    margin-top:24px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -khtml-border-radius:10px;
+    border-radius:10px;
+    padding-left:10px;
+}
+
+.overlayCity{z-index:8600;position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:rgba(204,204,204,0.7);display:none;}
+.overlayCity .search-citys{top:20px;position:relative;width:100%;font-size:14px;height: auto;margin:0 auto;}
+.overlayCity .search-citys input.text{border: 1px solid #cfcfcf;float: left;margin-right: 8px;font-size: 12px;padding: 10px 7px;outline: none;width: 100%;}
+/*搜索联想*/
+.overlayCity .search-text{position:absolute;width:100%;top:40px;height:500px;}
+.overlayCity .search-text ul{border-top:0;overflow:auto;width:40%;margin:0px;padding:0px;}
+.overlayCity .search-text ul li{height:40px;line-height:40px;background:#fff;padding:0 5px;border-bottom:1px solid #eee;border-right:1px solid #eee;}
+.overlayCity .search-text ul li strong{font-weight:bold;}
+.overlayCity .search-text ul li.ac_over{background:#fafafa;}
+
+.overlayHtml{z-index:8600;position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:#FFF;display:none;}
+.overlayHtml iframe{width:100%;height:100%;}
+
+/*  自定义confirm框 */
+#iOSdialogBoxLockScreen {
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL8AAAC/CAYAAACv6g0GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjRCNkNCNTI2MkQxMTFFMTgwRUI4MTQ0N0EzMzgwNUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjRCNkNCNTM2MkQxMTFFMTgwRUI4MTQ0N0EzMzgwNUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyNEI2Q0I1MDYyRDExMUUxODBFQjgxNDQ3QTMzODA1QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNEI2Q0I1MTYyRDExMUUxODBFQjgxNDQ3QTMzODA1QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PokZEbEAAAGISURBVHja7NJBDQAACMSwC0E40lHBi1bCsk4ygYdKAswP5gfzg/nB/GB+MD+YH8wP5gfzg/nB/GB+MD+YH8wP5gfzg/nB/GB+MD+YH8wP5gfzg/kxP5gfzA/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8YH4wP5gfzA/mB/NjfjA/mB/MD+YH84P5wfxgfjA/mB/MD+YH84P5wfxgfjA/mB/MD+YH84P5wfxgfjA/mB/Mj/klwPxgfjA/mB/MD+YH84P5wfxgfjA/mB/MD+YH84P5wfxgfjA/mB/MD+YH84P5wfxgfjA/mB/zg/nB/GB+MD+YH8wP5gfzg/nB/GB+MD+YH8wP5gfzg/nB/GB+MD+YH8wP5gfzg/nB/GB+MD/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8mF8CzA/mB/OD+cH8YH4wP5gfzA/mB/OD+cH8YH4wP5gfzA/HVgABBgBMOQIBHiWy6AAAAABJRU5ErkJggg==);
+    position:fixed;top:0;bottom:0;left:0;right:0;
+    z-index:99998;
+}
+
+#iOSdialogBoxWindow {
+    background-color:#FFF;
+    width:280px;height:100px;
+    
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    z-index:999999;
+    background-size:100% 100%;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-left:-140px;
+    margin-top:-50px;
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowTitle {
+    height:0px;
+   /* color:#FFF;
+    font-family:Verdana,Tahoma,Arial,Helvetica,sans-serif,serif;
+    font-size:25px;
+    position:absolute;top:25.8px;left:25.8px;right:25.8px;
+    text-align:center;*/
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowMessage {
+    color:#000;
+    display:block;
+    font-family:Verdana,Tahoma,Arial,Helvetica,sans-serif,serif;
+    font-size:18px;
+    height: 80px;
+    position:absolute;top:10.0px;left:25.8px;right:25.8px;
+    text-align:center;
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowButtons {
+    border-top:1px solid #CCC;
+    height:50px;
+    position:absolute;bottom:0px;left:25.8px;right:25.8px; /* left:17px;right:17px; */
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowButtons .iOSdialogBoxButton {
+    background-color:#FFF;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    background-size:100%;
+    color:#0099FF;
+    font-weight:400;
+    cursor:pointer;
+    font-family:Verdana,Tahoma,Arial,Helvetica,sans-serif,serif;
+    font-size:18px;
+    width:40%;height:20px;
+    text-align:center;
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowButtons .iOSdialogBoxButton:hover {
+     background-image: url(task.png);
+}
+
+#iOSdialogBoxWindow #iOSdialogBoxWindowButtons .iOSdialogBoxButton div {
+    position:absolute;
+    bottom:10px;
+    width:40%;margin:0 auto;
+    text-align:content;
+}

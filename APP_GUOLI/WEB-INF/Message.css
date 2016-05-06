@@ -1,0 +1,106 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:64px;
+}
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+	float: right;
+	margin-right: 5px;
+	height: 20px;
+	width: 30px;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #DDD;
+}.header {
+	background-color: #FFF;
+	height: 30px;
+	width: 100%;
+}
+.header span {
+	background-color: #FFF;
+	width: 50%;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+	height: 30px;
+}
+.xiaoxi {
+	background-color: #FFF;
+	width: 100%;
+	overflow: auto;
+	margin-top: 5px;
+}
+
+
+.divTable {
+	margin-top: 10px;
+	height: auto;
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CCCCCC;
+}
+.divTable div:first-child {
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 5px;
+    color:#CCC;
+    border-bottom:1px solid #CCC;
+}
+
+table {
+    background-color:#FFF;
+
+}
+
+table tr td:first-child {
+	width: 14px;
+	height: 15px;
+}
+table tr td:nth-child(2) {
+	text-align: left;
+	width: 120px;
+	font-size: 14px;
+}
+table tr td img {
+	margin-top:3px;
+	margin-left:5px;
+	margin-right:5px;
+	width: 15px;
+	height: 15px;
+}
+table td{
+    border-bottom:1px solid #CCC;
+    
+}

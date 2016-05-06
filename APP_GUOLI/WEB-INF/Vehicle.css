@@ -1,0 +1,54 @@
+@charset "utf-8";
+a {
+	text-decoration: none;
+	color: #FFF;
+	font-size: 16px;
+}
+.vehicle_top {
+	 background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 84px;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.vehicle_top .vehicle_back {
+    float: left;
+    height: 30px;
+    width: 30px;
+    margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    height: 30px;
+    width: 30px;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	overflow: auto;
+}
+.vehicle_body a div {
+	height: 40px;
+	width: 70%;
+    color:#000;
+    font-size:24px;
+	margin-top: 50px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	line-height: 40px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #43d2cf;
+}

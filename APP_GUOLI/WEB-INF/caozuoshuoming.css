@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #00CCCC;
+	height: 100%;
+	width: 100%;
+	color: #FFF;
+	font-size: 12px;
+}
+p {
+	font-size: 18px;
+}
+
+.title {
+	height: 128px;
+	width: 100%;
+	text-align: center;
+}
+
+
+.vehicle_top {
+	 background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 80px;
+}
+
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+	float: right;
+	margin-right: 5px;
+	height: 30px;
+	width: 30px;
+}

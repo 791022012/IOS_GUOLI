@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">    <meta name="format-detection" content="telephone=no">
+                <title>途易行</title>
+                <link href="yingyongfuwushezhi.css" rel="stylesheet" type="text/css">
+                    <script type="text/javascript" src="X.js"></script>
+                    <script type="text/javascript" src="jquery-2.1.0.js"></script>
+                    <script>
+                        $(function(){
+                          X.getWebservice();
+                          });
+                        function doCommit(){
+                            if(X.isEmpty($('input[name="ip"]').val())){
+                                X.dialog('请输入IP地址');
+                                return;
+                            }
+                            if($('input[type="checkbox"]').is(':checked')){
+                                if(X.isEmpty($('input[name="port"]').val())){
+                                    X.dialog('请输入端口号');
+                                    return;
+                                }
+                                X.html.setOverlay(0);
+                                X.setWebservice($('input[name="ip"]').val(),$('input[name="port"]').val());
+                            }else{
+                                X.html.setOverlay(0);
+                                X.setWebservice($('input[name="ip"]').val());
+                            }
+                        }
+                        function resultList(jsonResult){
+                            if(X.html.connError(jsonResult)) return;
+                            $('input[name="ip"]').val(jsonResult.webservice_id);
+                            $('input[name="port"]').val(jsonResult.webservice_port);
+                        }
+                        function setPortResult(jsonResult){
+                            if(X.html.connError(jsonResult)) return;
+                            if(jsonResult.success){
+                                X.dialog('设置成功!重启应用程序后,IP地址和端口号将恢复到默认状态');
+                                window.location.href="main.html";
+                            }else{
+                                X.dialog('设置失败!请重试');
+                            }
+                        }
+                        </script>
+    </head>
+    
+    <body>
+        <!--头部-->
+        <div class="vehicle_top">
+                	  <div class="vehicle_back"><a href="main.html"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+            <div>应用服务</div>
+        </div>
+        <div class="fuwu_body">
+            <div>应用服务IP地址</div>
+            <div><input name="ip" type="text" value=""></div>
+            <div><input type="checkbox" value="" checked>端口号</div>
+            <div><input name="port" type="text" value=""></div>
+            <div><input type="button"  value="保存" onclick="doCommit();"></div>
+        </div>
+    </body>
+</html>

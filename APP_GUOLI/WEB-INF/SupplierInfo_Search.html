@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">     <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="SupplierInfo_Search.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function doQuery(){
+	if(X.isEmpty($('input[name="edit__supplierinfo_gys"]').val() + $('input[name="edit__supplierinfo_dz"]').val())){
+		 X.dialog('请输入查询条件');
+		return;
+	}
+   
+    
+	window.location.href = "SupplierInfo.html?inputs&BUSS_ID=" + $('input[name="edit__supplierinfo_gys"]').val() + '&BUSS_ADDRESS=' + $('input[name="edit__supplierinfo_dz"]').val();
+}
+</script>
+</head>
+
+<body>
+<!--供应商信息查询头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home"><a href="main.html"><img src="tab_weixin_normal.png"  width="30" height="30" longdesc="arrow.png"></a></div>
+  <div>查询</div>
+</div>
+<!--供应商信息查询主体-->
+<div class="SupplierInfo_Search_body">
+    <div class="SupplierInfo_Search_bodyConter">
+    <table width="100%" align="center">
+      <tr>
+        <td class="table_td_right">供应商:</td>
+        <td ><input name="edit__supplierinfo_gys" type="text" placeholder="请输入供应商名称"></td>
+      </tr>
+        <tr>
+        <td  colspan="2" class="vehicleSearch_body_td_borde">&nbsp;			        </td> 
+      </tr>
+      <tr>
+        <td class="table_td_right">地址:</td>
+        <td><input name="edit__supplierinfo_dz" type="text" placeholder="请输入供应商地址"></td>
+      </tr>
+      <tr>
+        <td  colspan="2" class="vehicleSearch_body_td_borde">&nbsp;			        </td> 
+      </tr>
+              <tr>
+        <td  colspan="2" >&nbsp;</td> 
+      </tr>
+
+      <tr>
+        <td colspan="2" align="center" style="font-size:18px; color: #FFF; font-weight:500;">
+         <a href="javascript:void(0)" onclick="doQuery();">
+         	<div class="table_button">查询</div>
+         </a>
+       </td>
+       
+      </tr>
+    </table>
+    </div>
+</div>
+</body>
+</html>

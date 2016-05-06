@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	 background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 84px;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+	float: right;
+	margin-right: 5px;
+    height: 30px;
+    width: 30px;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #F5F5F5;
+}
+
+
+a {
+	text-decoration: none;
+	color: #FFF;
+}
+.abnormal_body {
+	margin-top: 10%;
+}
+
+.abnormal_body_cell {
+	height: 80px;
+	width: 100%;
+	margin-right: auto;
+	margin-bottom: 30px;
+	margin-left: auto;
+}
+.abnormal_body_cell_left {
+	background-color: #43d2cf;
+	float: left;
+	width: 40%;
+	height: 100%;
+	text-align: center;
+	line-height: 80px;
+	font-size: 22px;
+	margin-left: 5%;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	border-radius:10px;
+	color: #000;
+}
+ .abnormal_body_cell_right {
+	background-color: #43d2cf;
+	float: right;
+	width: 40%;
+	height: 100%;
+	text-align: center;
+	line-height: 80px;
+	font-size: 22px;
+	margin-right: 5%;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	border-radius:10px;
+	color: #111;
+}

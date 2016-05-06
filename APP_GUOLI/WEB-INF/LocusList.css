@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:44px;
+}
+
+
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+.divTable {
+	height: auto;
+	width: 100%;
+}
+.divTable table thead tr th {
+	height: 20px;
+	width: 30%;
+	background-color: #F00;
+	border-right: 1px solid #CCC;
+	text-align: center;
+	font-weight: 500;
+	color: #FFF;
+}
+.divTable table thead tr td {
+	height: 20px;
+	width: 30%;
+	border-right: 1px solid #CCC;
+	text-align: left;
+	border-bottom: 1px solid #CCC;
+	background-color: #FFF;
+}

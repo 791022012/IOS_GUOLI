@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta name="viewport" content="width=320,maximum-scale=2.5,user-scalable=no">
+          <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="LinkDriver.css" rel="stylesheet" type="text/css">
+<link href="X.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript">
+     var resultData;
+ $(function(){
+    X.html.setOverlay();
+	 X.soap(X.html.getInputs(), 'VehicleService', 'linkDriver');
+ });
+function resultList(jsonResult){
+    resultData = jsonResult.result;
+    X.html.putDataIntoTable(jsonResult.result,{'.table tbody tr':function(){
+                            window.location.href = 'DriverInfo.html?inputs&DRIVER_ID='+resultData[$(this).index()].DRIVER_ID+'&CLICKABLE=true&HREF=LinkDriver.html';
+                            }});
+}
+ </script>
+</head>
+
+<body>
+<!--关联车息_头部导航栏-->
+<div class="vehicle_top">
+ <div class="vehicle_back">
+ 	 <a href="javascript:void(0);" onclick="X.html.goBack();">
+ 	 <img src="arrow.png" longdesc="Image/arrow.png">
+  	 </a>
+   </div>
+   <div>关联人员</div>
+</div>
+<div class="div_duan"></div>
+<!--关联车息_主体信息-->
+<div class="divTable">
+    <!--首行-->
+    <table width="100%" cellspacing="0" cellpadding="0" class="table">
+  <thead>
+      <tr>
+          <th id="DRIVER_NAME" scope="col">车主</th>
+          <th id="DRIVER_TEL" scope="col">电话</th>
+      </tr>
+  </thead>
+        <tbody></tbody>
+</table>
+</div>
+</body>
+</html>

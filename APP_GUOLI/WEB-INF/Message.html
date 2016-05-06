@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">    <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="Message.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+    <script>
+        var result;
+        $(function(){
+            clickDetails_1();
+          });
+        function noticeResult(jsonResult){
+            result = jsonResult.result;
+            $('.table tbody').empty();
+            if(result.length>0){
+                for(var i=0;i<result.length;i++){
+                    if(!X.getObjLenOrCompare(result[i],0)) continue;
+                    $('.table').append('<tr><td><img src="arrow_next.png"/></td><td id="NOTICE_DATE"></td><td id="NOTICE_TITLE"></td></tr>');
+                    $('#NOTICE_DATE:last').text(result[i].NOTICE_DATE);
+                    $('#NOTICE_TITLE:last').text(result[i].NOTICE_TITLE);
+                }
+                $('.table tr').click(function(){
+                                   window.location.href = X.html.setInputs(result[$(this).index()],'NoticeDetail.html');
+                                     });
+            }else{
+                $('.table').append('<tr><td style="background-color:#FFF;border=0 ;font-size:14px; text-align:center">没有任何资讯哦...</td></tr>');
+               
+            }
+            $('.overlayX').css('display','none');
+        }
+        
+       function getNotice(){
+            var data = {};
+            data.PHONE = X.cookie.get('username');
+            data.PHONE_TYPE = '';
+            X.html.setOverlay();
+            X.soap(data,'NoticeService','getNotice','noticeResult');
+        }
+        function getPay(){
+            var data = {};
+            data.APIKEY = X.cookie.get('username');
+            data.ROLE_ID = X.cookie.get('role_id');
+            data.USER_ID = X.cookie.get('username');
+            X.html.setOverlay();
+            X.soap(data,'ApnNotifyService','getApnNotify');
+        }
+        function resultList(jsonResult){
+            X.html.putDataIntoDiv(jsonResult.result);
+        }
+        </script>
+    <style>
+        .overlayX{z-index:8000;position:fixed;top:0px;left:0px;width:100%;height:2000px;background-color:rgba(204,204,204,0.7);display:none;}
+        .overlayX > div{position:absolute;width:90%;margin-left:5%;margin-top:35%;background-color:#FFFFFF;height:60px;line-height:60px;}
+        .overlayX span{vertical-align:middle;margin-left:10px;overflow:auto;}
+        .overlayX img{margin-left:10px;vertical-align:middle;width:50px;height:50px;line-height:60px;}
+    </style>
+</head>
+
+<body>
+<!--消息头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+ <div>消息</div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div>   
+
+  <!--消息_类型 -->
+<div class="header">
+
+<span id="tongzi" onclick="clickDetails_1();" style="border-bottom:#f00 solid 1px;">通知资讯</span>
+<span id="qita" onclick="clickDetails_3();">其它消息</span>
+</div>
+<!--通知资讯    style="display:none;"隐藏div      -->
+    <div class="notice">
+        <table width="100%" cellspacing="0" cellpadding="0" class="table">
+            <tbody><tbody>
+        </table>
+    </div>
+<!--其它消息-->
+    <div class="detailBodyModel" hidden="hidden">
+        <div class="divTable" >
+            <div class="X CREATED_TIME">
+            </div>
+            <div class="X MESSAGE">
+            </div>
+        </div>
+    </div>
+    <div class="detailBody"></div>
+<script>
+function clickDetails_1(){
+	<!--通知资讯-->
+	$("#tongzi").css("border-bottom","solid 1px #F00");
+	$("#qita").css("border-bottom","none");
+    $('.notice').attr('hidden',false);
+    $('.detailBodyModel').attr('hidden',true);
+    $('.detailBody').attr('hidden',true);
+    getNotice();
+	} 
+function clickDetails_3(){
+	<!--其它消息-->
+	$("#tongzi").css("border-bottom","none");
+	$("#qita").css("border-bottom","solid 1px #F00");
+    $('.notice').attr('hidden',true);
+    $('.detailBodyModel').attr('hidden',false);
+    $('.detailBody').attr('hidden',false);
+    getPay();
+	} 
+</script>
+</body>
+</html>

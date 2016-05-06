@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">    <meta name="format-detection" content="telephone=no">
+<title>共享车源</title>
+<link href="ShareveHicle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<link href="X.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="cities.js"></script>
+<script>
+    var city_id,resultData;
+$(function(){
+  $('#citys ul').delegate('li','click',function(e){
+                          $('#city_name').val($(this).text());
+                          });
+  $("#dianji_CityList").text(X.isEmpty(X.cookie.get('cityname')) ? '' : X.cookie.get('cityname'));
+  getData();
+	});
+function getData(){
+    if(X.isEmpty($("#dianji_CityList").text())) return;
+    var data = {};
+    data.CITY = $('#dianji_CityList').text();
+    X.html.setOverlay();
+    X.soap(data,'VehicleService','getShareVehicle');
+
+}
+function resultList(jsonResult){
+    resultData = jsonResult.result;
+    X.html.putDataIntoDiv(resultData,{'.divTable':function(){
+                          if(X.isEmpty(resultData[$(this).index()].VEHICLE_ID)){
+                           X.dialog('车牌号为空');
+                          return;
+                          }
+                          var d = {};
+                          d.VEHICLE_NO = resultData[$(this).index()].VEHICLE_ID;
+                          d.HREF = 'ShareveHicle.html';
+                          window.location.href = X.html.setInputs(d,'VehicleInfo.html');
+                          }});
+}
+</script>
+</head>
+
+<body>
+<!--共享车源信头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back">
+      <a href="main.html">
+      <img src="arrow.png" width="30" height="30" 
+      longdesc="arrow.png"></a>
+  </div>
+  <div class="vehicle_home">
+   <a href="javascript:void(0);" onClick="X.city.showCitySelection('dianji_CityList');">
+   	 <div id="dianji_CityList"></div>
+ 	 <div><img src="city_qry.png"></div>
+    </a>
+  </div>
+  <div>共享车源</div>
+</div>
+<div class="div_duan"></div>
+<!--找车主体--信息展示 hidden="hidden"-->
+<div class="detailBodyModel" hidden="hidden" >
+<div class="divTable">
+<div class="divTable_tr1">
+     <div class="divTable_tr1_td3"><span>车牌号:</span></div>
+     <div class="divTable_tr1_td3 VEHICLE_ID"></div>
+     <div class="divTable_tr1_td2"><span>预达时间:</span></div>
+     <div class="divTable_tr1_td1 UDF1"></div>
+</div>
+<div class="divTable_tr1">
+     <div class="divTable_tr1_td1"><span>定位时间:</span></div>
+     <div class="divTable_tr1_td3 TIME_LOCATION"></div>
+</div>
+ <div class="divTable_tr3">
+     <div class="divTable_tr3_td1"><span>位置:</span></div>
+     <div class="divTable_tr3_td2 CURR_LOCATION"></div>
+</div>
+</div>
+</div>
+    <div class="detailBody">
+    </div>
+    <div class="overlayCity">
+        <div class="search-citys">
+            <input class="text" id="city_name" type="text" placeholder="请输入城市中文或拼音 / 点击选择城市" oninput="X.city.keyup();"/>
+            <div class="search-text" id="citys" onClick="X.city.blur(city_id,getData);">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

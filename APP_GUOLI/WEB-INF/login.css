@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #57ADBE;
+}
+.GUOLI_title {
+	margin-top: 15%;
+	text-align: center;
+	color: #FFF;
+	 font-size: 24px;
+	font-weight: 400;
+}
+.GUOLI_login {
+	height: 300px;
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.GUOLI_login div #login {
+	background-image:url(task.png);
+	color: #FFF;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+	border-radius:5px;
+	width: 100%;
+	border: 1px solid #06C;
+	height: 30px;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 10%;
+}
+.GUOLI_login div .chick {
+	float: left;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #FFF;
+	text-align: left;
+	vertical-align: text-bottom;
+	line-height: 20px;
+}
+.GUOLI_login .chongshe {
+	float: right;
+	margin-top: 20px;
+}
+.GUOLI_login .chongshe a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+
+
+.GUOLI_login .GUOLI_login_1 {
+	-webkit-border-radius:15px;
+	-moz-border-radius:15px;
+	-khtml-border-radius:15px;
+	border-radius:15px;
+	width: 100%;
+	border: 1px solid #FFF;
+	height: 30px;
+	margin-top: 10%;
+	text-align: left;
+}
+.GUOLI_login .GUOLI_login_1 div:first-child {
+	width: 20px;
+	float: left;
+	margin-left: 5px;
+	height: 20px;
+	margin-top: 5px;
+}
+.GUOLI_login .GUOLI_login_1 div:nth-child(2) input{
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #FFF;
+	text-align: left;
+	height: 28px;
+	max-height:70%;
+	overflow:auto;
+	background-color: #F30;
+	background:rgba(255, 255, 255, 0.0) none repeat scroll 0 0 !important;
+	margin-left: 10px;
+	width: 80%;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #FFF;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #FFF;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #FFF;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #FFF;
+}

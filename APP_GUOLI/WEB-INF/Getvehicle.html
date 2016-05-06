@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">    <meta name="format-detection" content="telephone=no">
+<title>途易行档</title>
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="cities.js"></script>
+<link href="Getvehicle.css" rel="stylesheet" type="text/css" />
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script>
+    var historyCondition,resultData,city_id,nomoreData = false;
+    $(function(){
+      $('#citys ul').delegate('li','click',function(e){
+                              $('#city_name').val($(this).text());
+                              });
+      historyCondition = X.html.getInputs();
+      $('.detailBody').empty();
+      $("#dianji_CityList").text(X.isEmpty(X.cookie.get('cityname')) ? '' : X.cookie.get('cityname'));
+      if(X.getObjLenOrCompare(historyCondition,0)){
+      getVehicleHistory();
+      }else{
+      getVehicleNearBy();
+      }
+      });
+      function getVehicleNearBy(){
+          if(X.isEmpty($('#dianji_CityList').text())){
+               X.dialog('请先选择一个城市');
+              $('.overlayX').css('display','none');
+              return;
+          }
+          var data = {};
+          
+          data.LAT = X.cookie.get("lat");
+          data.LNG = X.cookie.get("lng");
+          data.CITY = $('#dianji_CityList').text();
+          X.html.setOverlay();
+          X.soap(data,'GetVehicle','getVehicleAround');
+      }
+
+function getVehicleHistory(){
+    X.html.setOverlay();
+    X.soap(historyCondition,'GetVehicle','getVehicleHistory','historyResult');
+    $("div.vehicle_body_dq_left_cell").css("background-color",'#FFF');
+    $("div.vehicle_body_dq_left_cell_a").css("background-color",'#07a2b4');
+}
+
+function resultList(jsonResult){
+    resultData = jsonResult.result;
+    X.html.putDataIntoDiv(jsonResult.result,{'.divTable':function(){
+                          if(X.isEmpty(resultData[$(this).index()].VEHICLE_ID)){
+                          X.dialog('车牌号为空');
+                          return;
+                          }
+                          var d = {};
+                          d.VEHICLE_NO = resultData[$(this).index()].VEHICLE_ID;
+                          d.HREF = 'Getvehicle.html';
+                          window.location.href = X.html.setInputs(d,'VehicleInfo.html');
+                          }});
+    $(window).scroll(function(){});
+}
+
+function historyResult(jsonResult){
+    X.html.putDataIntoDiv(jsonResult.result,false,{'.divTable':function(){
+                          if(X.isEmpty($(this).find('.VEHICLE_ID').text())){
+                          X.dialog('车牌号为空');
+                          return;
+                          }
+                          var d = {};
+                          d.VEHICLE_NO = $(this).find('.VEHICLE_ID').text();
+                          d.HREF = 'Getvehicle.html';
+                          window.location.href = X.html.setInputs(d,'VehicleInfo.html');
+                          }});
+    $(window).scroll(function(){
+                     //alert('网页整体高度:'+$(document).height());
+                     //alert('滚动高度:'+$('html body').scrollTop());
+                     //alert('浏览器可见高度:'+document.documentElement.clientHeight);
+                     //如果滚动高度＋可见高度 ＝ 整体高度
+                     if(!nomoreData && ($('body').scrollTop()+document.documentElement.clientHeight == $(document).height())){
+                     //加载更多
+                     $('.overlayX').css('display','block');
+                     historyCondition.PAGENUMBER = ''+Math.ceil($('.detailBody .divTable').size()/30);
+                     getVehicleHistory();
+                     }
+                     });
+}
+</script>
+</head>
+
+<body>
+
+<!--找车信头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="main.html"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home">
+   <a href="javascript:void(0);" onClick="X.city.showCitySelection('dianji_CityList');" >
+   	 <div id="dianji_CityList"></div>
+ 	 <div><img src="city_qry.png"></div>
+    </a>
+  </div>
+  <div>找车</div>
+</div>
+<div class="div_duan"></div>
+
+<!--找车主体--跳转连接-->
+<div class="vehicle_body_dq"> 
+  <!--找周边-->
+   <div class="vehicle_body_dq_left">
+  	<a href="Getvehicle.html"> <div class="vehicle_body_dq_left_cell">
+     找周边
+     </div></a>
+  </div>
+    <!--找过去-->
+   <div class="vehicle_body_dq_right">
+   	<a href="GetVehicleSearch.html"><div class="vehicle_body_dq_left_cell_a">
+    	找过去
+    </div></a> 
+    
+  </div>
+</div>
+<!--分割线-->
+<div class="divTable_fengexian"></div>
+<!--找车主体--信息展示 hidden="hidden"-->
+<div class="detailBodyModel" hidden="hidden" >
+<div class="divTable">
+      <div class="divTable_tr2">
+        <div class="divTable_tr2_td1"><span>车牌号:</span></div>
+        <div class="divTable_tr2_td2 VEHICLE_ID"></div>
+      </div>
+            
+     <div class="divTable_tr1">
+          <div class="divTable_tr1_td1"><span>定位时间:</span></div>
+         <div class="divTable_tr1_td3 TIME_LOCATION"></div>
+         <div class="divTable_tr1_td2 TIT_UDF1"><span></span></div>
+        <div class="divTable_tr1_td1 UDF1"></div>
+    </div>
+            
+    <div class="divTable_tr3">
+      <div class="divTable_tr3_td1"><span>位置:</span></div>
+      <div class="divTable_tr3_td2 CURR_LOCATION"></div>
+   </div>
+   
+</div>
+</div>
+    <div class="detailBody"></div>
+    <div class="overlayCity">
+        <div class="search-citys">
+            <input class="text" id="city_name" type="text" placeholder="请输入城市中文或拼音 / 点击选择城市" oninput="X.city.keyup();"/>
+            <div class="search-text" id="citys" onClick="X.city.blur(city_id,getVehicleNearBy);">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

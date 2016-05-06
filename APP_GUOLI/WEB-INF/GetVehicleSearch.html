@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">   <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="X.css" rel="stylesheet" type="text/css">
+<link href="GetVehicleSearch.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="X.js"></script>
+    <script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+    function doQuery(){
+        var data = {};
+        var flag = true;
+        if(!X.isEmpty($('input[name="start_id_name"]').val())){
+            flag = false;
+            data.START_AREA_NAME = $('input[name="start_id_name"]').val();
+        }else{
+            data.START_AREA_NAME = '';
+        }
+        if(!X.isEmpty($('input[name="end_id_name"]').val())){
+            flag = false;
+            data.END_AREA_NAME = $('input[name="end_id_name"]').val();
+        }else{
+            data.END_AREA_NAME = '';
+        }
+        if(!X.isEmpty($('div.driver_name').text()) && $('div.driver_name').text()!='请输入车主名称'){
+            flag = false;
+            data.DRIVER_NAME = $('div.driver_name').text();
+        }else{
+            data.DRIVER_NAME = '';
+        }
+        if(!X.isEmpty($('div.vehicle_id').text()) && $('div.vehicle_id').text()!='请输入车牌号后5位'){
+            flag = false;
+            data.VEHICLE_ID = $('div.vehicle_id').text();
+        }else{
+            data.VEHICLE_ID = '';
+        }
+        if(flag){
+            X.dialog('请输入查询条件');
+            return;
+        }
+        window.location.href = X.html.setInputs(data,'Getvehicle.html');
+    }
+$(function(){
+
+$('div.driver_name').click(function() {
+                       var old=$('div.driver_name').text();
+                       $('body').append('<div class="overlayX"><input class="div_inputTel" type="text" placeholder="请输入车主名称" /></div>');
+                       if(old=='请输入车主名称'){
+                       old='';
+                       }else{
+                       $('div.overlayX input').text(old);
+                       }
+                       
+                       $('.overlayX').css('display','block');
+                       $('div.overlayX input').focus();
+                       
+                       if($('.overlayX').css('display')=='block'){
+                       $('div.overlayX input').val(old);
+                       $('div.overlayX input').change(function(e) {
+                                                      var iphone=$('div.overlayX input').val();
+                                                      $('div.driver_name').text(iphone);
+                                                      
+                                                      if($('div.driver_name').text().length<=0||$('div.overlayX input').val()=='请输入车主名称'){
+                                                      $('div.driver_name').text('请输入车主名称');
+                                                      $('div.driver_name').css('color','#CCC');
+                                                      }else{
+                                                      $('div.driver_name').css('color','#000');
+                                                      }
+                                                      $('div.overlayX').remove();
+                                                      
+                                                      
+                                                      });
+                       }
+                       
+                       $('.overlayX').click(function(){
+                                            $('div').remove('.overlayX');
+                                            });
+                       
+                       });
+                       
+ $('div.vehicle_id').click(function() {
+                                              var old=$('div.vehicle_id').text();
+                                              $('body').append('<div class="overlayX"><input class="div_inputTel" type="text" placeholder="请输入车牌号后5位" /></div>');
+                                              if(old=='请输入车牌号后5位'){
+                                              old='';
+                                              }else{
+                                              $('div.overlayX input').text(old);
+                                              }
+                                              
+                                              $('.overlayX').css('display','block');
+                                              $('div.overlayX input').focus();
+                                              
+                                              if($('.overlayX').css('display')=='block'){
+                                              $('div.overlayX input').val(old);
+                                              $('div.overlayX input').change(function(e) {
+                                                                             var iphone=$('div.overlayX input').val();
+                                                                             $('div.vehicle_id').text(iphone);
+                                                                             
+                                                                             if($('div.vehicle_id').text().length<=0||$('div.overlayX input').val()=='请输入车牌号后5位'){
+                                                                             $('div.vehicle_id').text('请输入车牌号后5位');
+                                                                             $('div.vehicle_id').css('color','#CCC');
+                                                                             }else{
+                                                                             $('div.vehicle_id').css('color','#000');
+                                                                             }
+                                                                             $('div.overlayX').remove();
+                                                                             
+                                                                             
+                                                                             });
+                                              }
+                                              
+                                              $('.overlayX').click(function(){
+                                                                   $('div').remove('.overlayX');
+                                                                   });
+                                              
+                                              });
+                                              
+
+
+
+});
+
+
+</script>
+</head>
+
+<body>
+<!--找车查询头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div>找过去</div>
+</div>
+<!--查询条件-->
+<div class="divTable">
+    <div class="divTable_divCenter">
+        <label>起点城市:</label>
+        <input name="start_id_name" type="text" placeholder="请输入起点城市">
+        <div class="divTable_fengexian"></div>
+        <label>终点城市:</label>
+        <input name="end_id_name" type="text" placeholder="请输入终点城市">
+        <div class="divTable_fengexian"></div>
+          <br />
+        <label>车主:</label>
+        <div class="driver_name">请输入车主名称</div>
+        <div class="divTable_fengexian"></div>
+            <br />
+        <label>车牌号:</label>
+        <div class="vehicle_id">请输入车牌号后5位</div>
+        <div class="divTable_fengexian"></div>
+	 					    <br> 
+    	<div><input name="btn_search" type="button" value="查询" onclick="doQuery();"></div>
+        
+    </div>
+</div>
+</body>
+</html>

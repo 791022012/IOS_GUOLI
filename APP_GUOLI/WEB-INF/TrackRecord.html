@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">    <meta name="format-detection" content="telephone=no">
+<title>跟踪界面</title>
+<link href="TrackRecord.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+var inputs;
+    $(function(){
+      inputs = X.html.getInputs();
+      $('#trans_group_id').text(inputs.TRANS_GROUP_ID);
+      if(inputs.STATUS == '正常'){
+	      $('#abnormal_status').text('异常');
+      $('#abnormal_button').click(function(){
+                                  markAbnormal();
+                                  });
+      }else{
+	      $('#abnormal_status').text('取消异常');
+      $('#abnormal_button').click(function(){
+                                  markNormal();
+                                  });
+      }
+    });
+    
+    function markNormal(){
+        var data = {};
+       	X.copyObj(inputs, data);
+       	data.LOCATION_MSG = $('input[name="LOCATION_MSG"]').val();
+       	data.TRACK_MSG = $('input[name="TRACK_MSG"]').val();
+        delete data.TRANS_GROUP_ID;
+        data.STATUS = 'true';
+        X.html.setOverlay(0);
+        if($('input[type="checkbox"]').is(':checked')){
+            X.soap(data,'TrackService','cancelAbnormal');
+        }else{
+            X.soap(data,'TrackService','setAbnormal');
+        }
+    }
+    
+    function markAbnormal(){
+    	var data = {};
+       	X.copyObj(inputs, data);
+       	data.LOCATION_MSG = $('input[name="LOCATION_MSG"]').val();
+       	data.TRACK_MSG = $('input[name="TRACK_MSG"]').val();
+        delete data.TRANS_GROUP_ID;
+        data.STATUS = 'true';
+        X.html.setOverlay(0);
+        if($('input[type="checkbox"]').is(':checked')){
+            X.soap(data,'TrackService','setAbnormal');
+        }else{
+            X.soap(data,'TrackService','cancelAbnormal');
+        }
+    }
+    
+    function resultList(jsonResult){
+        if(X.html.connError(jsonResult)) return;
+        if('00' == jsonResult.result[0].RESULT){
+            window.location.href = 'Track.html';
+        }else{
+             X.dialog(jsonResult.result.MSG);
+        }
+    }
+</script>
+<style>
+    .overlayX{z-index:8000;position:fixed;top:0px;left:0px;width:100%;height:2000px;background-color:rgba(204,204,204,0.7);display:none;}
+    .overlayX > div{position:absolute;width:90%;margin-left:5%;margin-top:35%;background-color:#FFFFFF;height:60px;line-height:60px;}
+    .overlayX span{vertical-align:middle;margin-left:10px;overflow:auto;}
+    .overlayX img{margin-left:10px;vertical-align:middle;width:50px;height:50px;line-height:60px;}
+</style>
+</head>
+
+<body>
+
+<!--在途跟踪头部-->
+<div class="vehicle_top">
+  <a href="Track.html"><div class="vehicle_back"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></div></a>
+	<div>在途跟踪</div>
+</div>
+<!--在途跟踪主体-->
+<div class="vehicleSearch_body_table">
+    <table width="100%" class="table">
+      <tr>
+        <td class="vehicleSearch_body_table_td_left">合同号:</td>
+        <td> <label id="trans_group_id"></label>  </td>
+      </tr>
+<!--和谐分割线-->
+      <tr>
+        <td colspan="2" class="vehicleSearch_body_table_fengx">
+         </td>
+      </tr>
+      <!--和谐分割线-->
+      <tr>
+        <td class="vehicleSearch_body_table_td_left">车辆位置:</td>
+        <td><input  name="LOCATION_MSG" type="text" class="vehicleSearch_body_table_shurukuang"  placeholder="请输入车辆位置"></td>
+      </tr>
+      <!--和谐分割线-->
+      <tr>
+        <td colspan="2" class="vehicleSearch_body_table_fengx">
+         </td>
+      </tr>
+        <tr>
+      <!--和谐分割线-->
+        <td class="vehicleSearch_body_table_td_left">跟踪信息:</td>
+        <td><input name="TRACK_MSG" type="text" class="vehicleSearch_body_table_shurukuang"  placeholder="请输入跟踪信息"></td>
+      </tr>
+       <!--和谐分割线-->
+      <tr>
+        <td colspan="2" class="vehicleSearch_body_table_fengx">
+         </td>
+      </tr>
+      <!--和谐分割线-->
+      <tr>
+      <td></td>
+        <td>
+        <input name="abnormal_status" type="checkbox" value="">
+        <label id="abnormal_status"></label>
+        </td>
+        
+      </tr>
+       <tr> <td colspan="2" height="40px"> </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <a id="abnormal_button" href="javascript:void(0)" onclick="">
+        	<div  class="vehicleSearch_body_table_button">跟踪</div>
+          </a>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿@charset "utf-8";
+/*科e互联特效基本框架CSS*/
+body, ul, dl, dd, dt, ol, li, p, h1, h2, h3, h4, h5, h6, textarea, form, select, fieldset, table, td, div, input {margin:0;padding:0;-webkit-text-size-adjust: none}
+body>div{margin:0 auto}
+a img {border:0}
+body { color: #333; text-align: center; font: 12px "微软雅黑"; }
+ul, ol, li {list-style-type:none;vertical-align:0}
+/*科e互联特效基本框架CSS结束，应用特效时，以上样式可删除*/
+
+.wraper{
+	width:100%;
+	height:100px;
+	margin:0 auto;
+	position:relative;
+}
+
+.scroll_pic_view{
+	position:relative;
+}
+.scroll_pic_view>div{
+	width:10000px;
+	overflow:hidden;
+}
+.scroll_pic_view ul{
+	width:100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.scroll_pic_view ul li{
+	float:left;
+}
+.scroll_pic_view ul li a{
+	display: block;
+}
+
+
+
+   .scroll_pic_view ul li img{
+	width:320px;
+	height:480px;
+	}
+
+.scroll_pic_view ol{
+	position: absolute;
+	z-index: 100;
+	bottom:8px;
+	width:100%;
+	text-align: center;
+	pointer-events:none;
+}
+.scroll_pic_view ol li{
+	display: inline-block;
+	width: 25px;
+    height: 25px;
+    margin-left:3px;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    background: #272727;
+	color:#fff;
+	line-height:25px;
+	margin-bottom:-5px;
+}
+.scroll_pic_view ol li span{
+	-webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+	display: block;
+}
+.scroll_pic_view ol li.on span{
+	-webkit-transform: skew(0deg);
+    -moz-transform: skew(0deg);
+    -o-transform: skew(0deg);
+}
+.scroll_pic_view ol li.left span{
+	-webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+}
+.scroll_pic_view ol li.left{    
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+}
+.scroll_pic_view ol li.on{
+	color:#ffffff;
+	line-height:25px;
+	margin-left:1px;
+	margin-right:-2px;
+	border-bottom: 25px solid #48aff0;
+    border-left: 8px solid transparent;
+    border-right:8px solid transparent;
+    height: 0;
+    width: 60px;
+	background:none;
+	-webkit-transform: skew(0deg);
+    -moz-transform: skew(0deg);
+    -o-transform: skew(0deg);
+}
+#btn_goLogin{
+	position:absolute;
+	bottom:50px;
+	left:83.5%;
+	z-index:2000;
+	width:100px;
+	height:30px;
+	margin:0 0 0 -50px;
+	font-size:20px;
+	background-color:#FC6E3D;
+	color:#FFF;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+	border-radius:5px;
+	border: 1px solid #FC6E3D;
+	}

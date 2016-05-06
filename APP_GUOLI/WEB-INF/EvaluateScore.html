@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">     <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="EvaluateScore.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="jquery.mobile-1.4.5.js"></script>
+<script>
+var score1,score2;
+$(function(){
+	var src = window.location.href;
+	var inputs = X.html.getInputs(src);
+	$('#trs_id').text(inputs.TRS_ID);
+	$('#trans_group_id').text(inputs.TRANS_GROUP_ID);
+	//给每个星星定点击事件
+	$('.EvaluateScore_body_center table tr:first-child img').click(function(){
+		$(this).attr('src','star2.png');
+		$(this).prevAll('img').attr('src','star2.png');
+		$(this).nextAll('img').attr('src','star1.png');
+		score1 = $(this).index()+ 1 + '.0';
+	});
+	$('.EvaluateScore_body_center table tr:first-child+tr img').click(function(){
+		$(this).attr('src','star2.png');
+		$(this).prevAll('img').attr('src','star2.png');
+		$(this).nextAll('img').attr('src','star1.png');
+		score2 = $(this).index()+ 1 + '.0';
+	});
+});
+
+function commitScore(){
+	var data = {};
+	data.TRS_ID = $('#trs_id').text();
+	data.TRANS_GROUP_ID = $('#trans_group_id').text();
+	data.USER_ID = X.cookie.get('username');
+	data.ROLE_ID = X.cookie.get('role_id');
+	data.SCORE1 = score1;
+	data.SCORE2 = score2;
+    X.html.setOverlay(0);
+	X.soap(data,'EvaluateService','commitScore');
+}
+function resultList(jsonResult){
+    if(X.html.connError(jsonResult)) return;
+	if('00' == jsonResult.result[0].RESULT){
+		window.location.href = "Evaluate.html";
+	}else{
+        X.dialog(jsonResult.result[0].MSG);
+    }
+}
+</script>
+</head>
+
+<body>
+
+<!--评价信头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back">
+	<a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="Image/arrow.png"></a>
+  </div>
+	<div>发布评价</div>
+</div>
+<!--发布评价主体-->
+<div class="EvaluateScore_body">
+  <div class="EvaluateScore_body_top">  
+   	<table width="100%" >
+      <tr>
+        <td class="EvaluateScore_table_leftTD">运单号:<label id="trs_id"></label></td>
+       
+      </tr>
+      <tr>
+        <td class="EvaluateScore_table_leftTD">合同号: <label id="trans_group_id"></label></td>
+      </tr>
+	</table>
+
+  </div>
+  <br/>
+  <!--和谐的分割线-->
+ <div class="divTable_fengexian"></div>
+ <!--和谐的分割线-->
+ 
+  <div class="EvaluateScore_body_center">
+  	<table width="100%">
+      <tr>
+        <td class="EvaluateScore_table_leftTD_b">装货现场评价: <img src="star1.png"/><img src="star1.png"/><img src="star1.png"/><img src="star1.png"/><img src="star1.png"/></td>
+      </tr>
+      <tr>
+        <td class="EvaluateScore_table_leftTD_b">异常协调评价: <img src="star1.png"/><img src="star1.png"/><img src="star1.png"/><img src="star1.png"/><img src="star1.png"/></td>
+       
+      </tr>
+	</table>
+  </div>
+  <a href="javascript:void(0)" onclick="commitScore();"><div class="EvaluateScore_bottom">
+ 	提交评价 </div></a>
+
+</div>
+</body>
+</html>

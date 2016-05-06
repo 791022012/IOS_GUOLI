@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:64px;
+}
+
+
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+.divTable {
+	height: auto;
+	width: 100%;
+}
+.divTable table tr th:first-child {
+	height: 20px;
+	width: 30%;
+    color:#FFF;
+	background-color: #F00;
+	border-right: 1px solid #CCC;
+	text-align: center;
+}
+.divTable table tr th:nth-child(2) {
+	background-color: #F00;
+	height: 20px;
+	width: 39%;
+    color:#FFF;
+	text-align: center;
+	border-right: 1px solid #CCC;
+	text-align: center;
+}
+.divTable table tr th:nth-child(3) {
+	background-color: #F00;
+	height: 20px;
+	width: 30%;
+    color:#FFF;
+	text-align: center;
+	border-right: 1px solid #CCC;
+	text-align: center;
+}
+body table tr td:first-child {
+	height: 25px;
+	width: 30%;
+	background-color: #FFF;
+	border-right: 1px solid #CCC;
+	text-align: center;
+	border-bottom: 1px solid #CCC;
+}
+body table tr td:nth-child(2) {
+	background-color: #FFF;
+	height: 25px;
+	width: 39%;
+	text-align: center;
+	border-bottom: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+}
+body table tr td:nth-child(3) {
+	background-color: #FFF;
+	height: 25px;
+	width: 30%;
+	text-align: center;
+	border-bottom: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+}

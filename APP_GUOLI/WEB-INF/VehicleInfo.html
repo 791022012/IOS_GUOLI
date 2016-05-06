@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=2.5,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="VehicleInfo.css" rel="stylesheet" type="text/css">
+<link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="X.js"></script>
+
+<script type="text/javascript">
+var resultData,data,clickAble;
+    $(function(){
+      data = X.html.getInputs();
+      if(X.isEmpty(data.HREF)){
+      $('.vehicle_back a').attr('href','Vehicle.html');
+      }else{
+      $('.vehicle_back a').attr('href',data.HREF);
+      }
+      delete data.HREF;
+      clickAble = data.CLICKABLE;
+      delete data.CLICKABLE;
+      X.html.setOverlay();
+      X.soap(data, 'VehicleService', 'vehicleInfo');
+      });
+
+	function resultList(jsonResult) {
+        resultData = jsonResult.result;
+        var funcObj = {};
+        if(X.isEmpty(clickAble)){
+            funcObj['.divTable'] = function(){
+                var data = {};
+                data.DRIVER_ID = resultData[$(this).index()].DRIVER_ID;
+                data.VEHICLE_NO = resultData[$(this).index()].VEHICLE_NO;
+                window.location.href = X.html.setInputs(data,'LinkVehicle.html');
+            }
+        }
+		X.html.putDataIntoDiv(jsonResult.result,funcObj);
+        hmb();
+        
+    }
+	
+	
+</script>
+</head>
+<body>
+<!--车辆信息_头部导航栏-->
+<div class="vehicle_top">
+  <div class="vehicle_back"> <a href="Vehicle.html"> <img src="arrow.png" width="30"
+				height="30" longdesc="arrow.png"> </a> </div>
+  <div class="vehicle_home"> <a href="VehiclSearch.html"> <img src="tab_find_frd_normal.png"
+				width="30" height="25" longdesc="arrow.png"> </a> </div>
+  <div>车辆信息</div>
+</div>
+
+<div class="div_duan"></div>
+	<!--车辆信息_查询后显示的页面-->
+	<!--新版数据展示  -->
+<div class="detailBodyModel" hidden="hidden">
+<div class="divTable">
+    <div class="divTable_tr1">
+		<div class="divTable_tr1_td4">
+			<span>车牌号:</span>
+		</div>
+		<div class="divTable_tr1_td5 VEHICLE_NO"></div>
+		<div class="divTable_tr1_td4">
+			<span>黑名单:</span>
+		</div>
+		<div data-id='1' class="divTable_tr1_td5 LOCK_STATUS" ></div>
+	</div>
+	<div class="divTable_tr1">
+		<div class="divTable_tr1_td1">
+			<span>车辆状态:</span>
+		</div>
+		<div class="divTable_tr1_td1 VEHICLE_STATUS"></div>
+		<div class="divTable_tr1_td2">
+			<span>类别:</span>
+		</div>
+		<div class="divTable_tr1_td3 VEHICLE_TYPE"></div>
+	</div>
+	<div class="divTable_tr1">
+		<div class="divTable_tr1_td2">
+			<span>评级:</span>
+		</div>
+		<div class="divTable_tr1_td3 GRADE"></div>
+		<div class="divTable_tr1_td1">
+			<span>总体评分:</span>
+		</div>
+		<div class="divTable_tr1_td1 TOTAL_GRADE"></div>
+	</div>
+	<div class="divTable_tr1">
+		<div class="divTable_tr1_td5"><span>运作次数:</span></div>
+		<div class="divTable_tr1_td4 VEHICLE_COUNT"></div>
+		<div class="divTable_tr1_td5"><span>回单及时率:</span></div>
+		<div class="divTable_tr1_td4 POD_RATE"></div>
+	</div>
+    
+	<div class="divTable_tr1">
+		<div class="divTable_tr1_td5">
+			<span>到货及时率:</span>
+		</div>
+		<div class="divTable_tr1_td4 UNLOAD_RATE"></div>
+		<div class="divTable_tr1_td5">
+			<span>货损货差率:</span>
+		</div>
+		<div class="divTable_tr1_td4 DESPAIL_RATE"></div>
+	</div>
+    
+	<div class="divTable_tr2">
+		<div class="divTable_tr2_td1">
+			<span>车主:</span>
+		</div>
+		<div class="divTable_tr2_td2 DRIVER_NAME"></div>
+	</div>
+    
+	<div class="divTable_tr2">
+		<div class="divTable_tr2_td1">
+			<span>电话:</span>
+		</div>
+		<div class="divTable_tr2_td2 DRIVER_TEL"></div>
+	</div>
+	<div class="divTable_tr3">
+		<div class="divTable_tr3_td1">
+			<span>地址:</span>
+		</div>
+		<div class="divTable_tr3_td2 DRIVER_ADDR"></div>
+	</div>
+	<div class="divTable_tr3">
+		<div class="divTable_tr3_td1">
+			<span>备注:</span>
+		</div>
+		<div class="divTable_tr3_td2 NOTES"></div>
+	</div>
+</div>
+
+
+
+
+
+</div>
+<!--车辆信息_查询后显示的页面--> 
+<!--新版数据展示-->
+    <div class="detailBody">
+    </div>
+</body>
+</html>
+<script>
+
+function hmb(){
+        $(".divTable_tr1_td5.LOCK_STATUS").each(function(){
+                                                
+                                                if($(this).text()=="是"){
+                                                
+                                                   $(this).css("color","#F00");
+                                                }
+                     });
+			
+};
+</script>

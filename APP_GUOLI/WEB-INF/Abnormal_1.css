@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:64px;
+}
+.vehicle_top .vehicle_back {
+	float: left;
+    z-index:3;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.divTable {
+	width: 100%;
+	overflow-x: auto;
+	height: 100%;
+}
+.divTable .divTable_head {
+	width: 1000px;
+	height: 100%;
+}
+
+
+table thead tr th{
+	text-decoration: none;
+	background-color: #f00;
+	width: 80px;
+	text-align: center;
+	border-right: 1px solid #CCC;
+	font-weight: 530;
+	color: #FFF;
+}
+table thead tr td{
+	text-align: left;
+	border-right: 1px solid #CCC;
+	color: #000;
+	border-bottom: 1px solid #CCC;
+	text-decoration: none;
+}
+table thead tr td:first-child{ 
+	width: 80px;
+}
+table thead tr td:nth-child(2){ 
+	width: 120px;
+}
+table thead tr td:nth-child(5){ 
+	width: 120px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">   <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="Abnormal_1.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+$(function(){
+  X.snail();
+	var data = {};
+    data.USER_ID = X.cookie.get('username');
+  X.html.setOverlay();
+	X.soap(data,'AbnormalService','getUnAuditTrs');
+});
+function resultList(jsonResult){
+	X.html.putDataIntoTable(jsonResult.result);
+}
+</script>
+</head>
+
+<body>
+<!--应审未审头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div>应审未审</div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div>   
+<!--应审未审_首页显示信息-->
+<div class="divTable"> 
+  <!--首行-->
+  <div class="divTable_head">
+    <table width="100%"  cellspacing="0" cellpadding="0" class="table">
+      <thead>
+        <tr>
+          <th id="TRS_ID" scope="col" class="divTable_head_1">运单号</th>
+          <th id="CUSTOMER_NAME" scope="col" class="divTable_head_1">客户</th>
+          <th id="TRANS_GROUP_ID" scope="col" class="divTable_head_1">合同号</th>
+          <th id="UDF1" scope="col" class="divTable_head_1">是否回单</th>
+          <th id="BUSS_NAME" scope="col" class="divTable_head_1">承运商</th>
+          <th id="CONVEYANCE_ID" scope="col" class="divTable_head_1">车牌号</th>
+          <th id="MAIN_TEL" scope="col" class="divTable_head_1">联系电话</th>
+          <th id="DISPATCH_TIME" scope="col" class="divTable_head_1">发运日期</th>
+          <th id="START_ID_NAME" scope="col" class="divTable_head_1">起点城市</th>
+          <th id="END_ID_NAME" scope="col" class="divTable_head_1">终点城市</th>
+        </tr>
+      </thead>
+      <!--信息主体显示-->
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

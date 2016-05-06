@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">
+     <meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="Abnormal_1_1.css" rel="stylesheet" type="text/css">
+    <link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="X.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script>
+$(function(){
+  X.snail();
+	var inputs = X.html.getInputs();
+	$('.vehicle_top label').text(inputs.TRS_ID);
+	inputs.USER_ID = X.cookie.get('username');
+  X.html.setOverlay();
+	X.soap(inputs,'AbnormalService','getTrackRecordMsg');
+});
+function resultList(jsonResult){
+	X.html.putDataIntoDiv(jsonResult.result);
+}
+</script>
+</head>
+
+<body>
+<!--跟踪异常_头部-->
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0);" onclick="X.html.goBack();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div> 运单号
+    <label id="no_id"></label>
+  </div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div>   
+<!--跟踪异常_主体信息-->
+<div class="detailBodyModel" hidden="hidden">
+<div class="divTable">
+    <div class="divTable_tr1">
+        <div class="divTable_tr1_td1"><span>跟踪时间:</span></div>
+        <div class="divTable_tr1_td4 TRACK_TIME"></div>
+        <div class="divTable_tr1_td2"><span>状态:</span></div>
+        <div class="divTable_tr1_td2 STATUS"></div>
+    </div>
+    <div class="divTable_tr1">
+        <div class="divTable_tr1_td1"><span>跟踪人:</span></div>
+        <div class="divTable_tr1_td4 TRACK_NAME"></div>
+        <div class="divTable_tr1_td1"><span>车辆位置:</span></div>
+        <div class="divTable_tr1_td1 LOCATION_MSG"></div>
+    </div>
+    
+    <div class="divTable_tr2">
+        <div class="divTable_tr2_td1"><span>跟踪信息:</span></div>
+        <div class="divTable_tr2_td2 TRACK_MSG"></div>
+    </div>
+</div>
+</div>
+    <div class="detailBody">
+    </div>
+</body>
+</html>

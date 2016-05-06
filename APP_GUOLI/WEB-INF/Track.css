@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+
+.vehicle_top {
+	background-image: url(task.png);
+     font-size: 24px;
+    color: #FFF;
+    height: 64px;
+	line-height:84px;
+    width: 100%;
+    text-align: center;
+	position:fixed;
+	top:0px;
+	z-index:3;
+}
+.vehicle_top div{
+    width:50%;
+    margin:0 auto;
+}
+.div_duan {
+	margin-top:64px;
+}
+
+
+.vehicle_top .vehicle_back {
+	float: left;
+	height: 30px;
+	width: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+.vehicle_top .vehicle_home {
+	float: right;
+	margin-right: 5px;
+	height: 20px;
+	width: 50px;
+}
+.vehicle_top .vehicle_home a {
+	color: #FFF;
+	font-size: 16px;
+	text-decoration: none;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #F5F5F5;
+}
+
+.divTable {
+	width: 100%;
+	overflow-x: auto;
+	height: 100%;
+}
+.divTable .divTable_head {
+	width: 800px;
+	height: 100%;
+}
+table thead tr th:first-child{
+	text-decoration: none;
+	background-color: #F00;
+	width: 20px;
+	text-align: center;
+	border-right: 1px solid #CCC;
+	font-weight: 530;
+	color: #FFF;
+}
+table thead tr th{
+	text-decoration: none;
+	background-color: #F00;
+	width: 100px;
+	text-align: center;
+	border-right: 1px solid #CCC;
+	font-weight: 530;
+	color: #FFF;
+}
+.table tr td{
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+}
