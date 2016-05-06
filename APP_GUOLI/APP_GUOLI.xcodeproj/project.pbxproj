@@ -271,6 +271,8 @@
 		52FE96011C30D71600E84235 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FE95FE1C30D71600E84235 /* Default@2x.png */; };
 		52FE96091C30E0B500E84235 /* main_publishsource1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FE96081C30E0B500E84235 /* main_publishsource1.png */; };
 		52FE960B1C30FDE800E84235 /* caozuoshuoming.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FE960A1C30FDE800E84235 /* caozuoshuoming.html */; };
+		8EA7D7CF1CDC8F6F0056E2E0 /* GLShop.html in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7D7CE1CDC8F6F0056E2E0 /* GLShop.html */; };
+		8EA7D7D11CDC8F800056E2E0 /* GLShop.css in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7D7D01CDC8F800056E2E0 /* GLShop.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -547,6 +549,8 @@
 		52FE95FE1C30D71600E84235 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		52FE96081C30E0B500E84235 /* main_publishsource1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_publishsource1.png; path = "WEB-INF/main_publishsource1.png"; sourceTree = "<group>"; };
 		52FE960A1C30FDE800E84235 /* caozuoshuoming.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = caozuoshuoming.html; path = "WEB-INF/caozuoshuoming.html"; sourceTree = "<group>"; };
+		8EA7D7CE1CDC8F6F0056E2E0 /* GLShop.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = GLShop.html; path = "WEB-INF/GLShop.html"; sourceTree = "<group>"; };
+		8EA7D7D01CDC8F800056E2E0 /* GLShop.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = GLShop.css; path = "WEB-INF/GLShop.css"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,6 +587,7 @@
 				52EDA7CF1C228ED40014CBCD /* Abnormal_3.html */,
 				52EDA7D01C228ED40014CBCD /* Abnormal_4.html */,
 				52EDA7D11C228ED40014CBCD /* Abnormal_5.html */,
+				8EA7D7CE1CDC8F6F0056E2E0 /* GLShop.html */,
 				52EDA7D21C228ED40014CBCD /* Abnormal_6_6.html */,
 				52EDA7D31C228ED40014CBCD /* Abnormal_6.html */,
 				52EDA7D51C228ED40014CBCD /* Abnormal.html */,
@@ -741,6 +746,7 @@
 				52EDA7E51C228ED40014CBCD /* CityList.css */,
 				52EDA7F11C228ED40014CBCD /* DriverInfo.css */,
 				52EDA7F61C228ED40014CBCD /* Evaluate.css */,
+				8EA7D7D01CDC8F800056E2E0 /* GLShop.css */,
 				52EDA7F81C228ED40014CBCD /* EvaluateScore.css */,
 				52FE95F41C30D50F00E84235 /* caozuoshuoming.css */,
 				52EDA7FE1C228ED40014CBCD /* FeeQuery_in.css */,
@@ -1167,6 +1173,7 @@
 				52EDA9671C228ED40014CBCD /* service2.png in Resources */,
 				52EDA94B1C228ED40014CBCD /* plugin_camera_no_pictures.png in Resources */,
 				52EDA8BD1C228ED40014CBCD /* Abnormal.css in Resources */,
+				8EA7D7CF1CDC8F6F0056E2E0 /* GLShop.html in Resources */,
 				52EDA8CF1C228ED40014CBCD /* CityList.html in Resources */,
 				52EDA8CD1C228ED40014CBCD /* city_qry.png in Resources */,
 				52EDA9471C228ED40014CBCD /* plugin_camera_choose_back.png in Resources */,
@@ -1178,6 +1185,7 @@
 				52EDA95D1C228ED40014CBCD /* score_goods2_selected.png in Resources */,
 				52EDA8BB1C228ED40014CBCD /* Abnormal_6_6.html in Resources */,
 				52EDA91D1C228ED40014CBCD /* LocusList.html in Resources */,
+				8EA7D7D11CDC8F800056E2E0 /* GLShop.css in Resources */,
 				52EDA90B1C228ED40014CBCD /* jquery.mobile-1.4.5.js in Resources */,
 				52EDA9241C228ED40014CBCD /* login.css in Resources */,
 				52EDA9371C228ED40014CBCD /* main.html in Resources */,

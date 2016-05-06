@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=320,maximum-scale=1,initial-scale=1.0,minimum-scale=0.1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>途易行</title>
+<link href="GLShop.css" rel="stylesheet" type="text/css">
+<link href="X.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="X.js"></script>
+<script>
+$(function(){
+    X.html.setOverlay();
+	X.soap('<func_mode>FUNC02</func_mode>', 'ExecSqlService', 'getPicDir');//
+});
+
+//判断是否从main.html跳入
+function toUrl(){
+     window.location.href="main.html";
+}
+
+function resultList(jsonResult){
+    if(X.html.connError(jsonResult)) return;
+	$('.detailBody').empty();
+	if(jsonResult.result.length > 0){
+		for(var x in jsonResult.result[0]){
+			if(!X.isEmpty(jsonResult.result[0][x]) && /^img.*/ig.test(x)){
+				$('.detailBody').append('<img src="' + jsonResult.result[0][x] +'" style="width:100%;height:100%;"/>');
+			}
+		}
+	}else{
+		$('.detailBody').append('未找到任何推荐图片');
+	}
+}
+</script>
+</head>
+
+<body>
+<div class="vehicle_top">
+  <div class="vehicle_back"><a href="javascript:void(0)" onclick="toUrl();"><img src="arrow.png" width="30" height="30" longdesc="arrow.png"></a></div>
+  <div class="vehicle_home">
+   <a href="main.html">
+ 	 <div><img src="tab_weixin_normal.png"></div>
+    </a>
+  </div>
+  <div>国力商城</div>
+</div>
+     <!-- 空块-->  
+  <div class="div_duan"></div> 
+<div class="detailBody">
+</div>
+
+</body>
+</html>

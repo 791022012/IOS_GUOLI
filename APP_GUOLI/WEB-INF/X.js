@@ -51,6 +51,7 @@ soap:function(data,serviceAction,action,href){
     if(!X.isEmpty(href)){
         url = url + '//' + href;
     }
+    //alert(url);//用于检察 参数
     window.location = url;
 },
 //调用IOS相册
