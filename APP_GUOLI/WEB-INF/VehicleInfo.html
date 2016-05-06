@@ -15,7 +15,8 @@
 <script type="text/javascript">
 var resultData,data,clickAble;
     $(function(){
-      data = X.html.getInputs();
+      /*data = X.html.getInputs();
+      alert(data);
       clickAble = data.CLICKABLE;
       delete data.CLICKABLE;
       if(X.isEmpty(data.HREF)){
@@ -24,7 +25,18 @@ var resultData,data,clickAble;
       $('.vehicle_back a').attr('href',data.HREF);
       }
       delete data.HREF;
+      X.html.setOverlay();*/
       X.html.setOverlay();
+      data = X.html.getInputs();
+      alert(data);
+      clickAble = data.CLICKABLE;
+      delete data.CLICKABLE;
+      if(X.isEmpty(data.HREF)){
+      $('.vehicle_back a').css('href','VehiclSearch.html');
+      }else{
+      $('.vehicle_back a').css('href',data.HREF);
+      }
+      delete data.HREF;
       X.soap(data, 'VehicleService', 'vehicleInfo');
       });
 
